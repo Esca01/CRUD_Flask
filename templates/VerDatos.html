@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Datos</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            position: relative; /* Para que los botones estén posicionados correctamente */
+        }
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .data-key {
+            font-weight: bold;
+            margin-right: 10px;
+            width: 120px; /* Ancho fijo para los nombres de los campos */
+        }
+        .data-value {
+            flex: 1;
+        }
+        .delete-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+        .pagination {
+            margin-top: 20px;
+        }
+        .search-form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ver Datos</h1>
+
+    <!-- Formulario de búsqueda arriba -->
+    <div class="search-form">
+        <form action="/VerDatos" method="GET">
+            <label for="search_name">Buscar por nombre:</label>
+            <input type="text" id="search_name" name="search_name" placeholder="Ingrese el nombre">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
+    <!-- Barra de navegación para paginación -->
+    <div class="pagination">
+        {% if current_page > 1 %}
+            <a href="/VerDatos?page={{ current_page - 1 }}">Anterior</a>
+        {% endif %}
+        
+        {% if current_page < total_pages %}
+            <a href="/VerDatos?page={{ current_page + 1 }}">Siguiente</a>
+        {% endif %}
+    </div>
+
+    <ul id="data-list">
+        <!-- Aquí se insertarán los datos obtenidos de MongoDB -->
+        {% for document in data %}
+            <li>
+                <div class="data-row">
+                    <div class="data-key">_id:</div>
+                    <div class="data-value">{{ document['_id'] }}</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-key">Listing URL:</div>
+                    <div class="data-value"><a href="{{ document['listing_url'] }}" target="_blank">{{ document['listing_url'] }}</a></div>
+                </div>
+                <div class="data-row">
+                    <div class="data-key">Name:</div>
+                    <div class="data-value">{{ document['name'] }}</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-key">Summary:</div>
+                    <div class="data-value">{{ document['summary'] }}</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-key">Property Type:</div>
+                    <div class="data-value">{{ document['property_type'] }}</div>
+                </div>
+                <!-- Botón de eliminar -->
+                <form action="/delete_document/{{ document['_id'] }}" method="post">
+                    <button type="submit">Eliminar</button>
+                </form>
+                <!-- Botón de editar -->
+                <a href="/editar_dato/{{ document['_id'] }}">Editar</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Barra de navegación para paginación -->
+    <div class="pagination">
+        {% if current_page > 1 %}
+            <a href="/VerDatos?page={{ current_page - 1 }}">Anterior</a>
+        {% endif %}
+        
+        {% if current_page < total_pages %}
+            <a href="/VerDatos?page={{ current_page + 1 }}">Siguiente</a>
+        {% endif %}
+    </div>
+
+    <!-- Formulario de búsqueda abajo -->
+    <div class="search-form">
+        <form action="/VerDatos" method="GET">
+            <label for="search_name">Buscar por nombre:</label>
+            <input type="text" id="search_name" name="search_name" placeholder="Ingrese el nombre">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
+    <!-- Script para manejar la lógica de eliminar -->
+    <script>
+        function remove(id) {
+            // Lógica para eliminar el elemento con el ID especificado
+            alert("Eliminar elemento con ID: " + id);
+        }
+    </script>
+</body>
+</html>

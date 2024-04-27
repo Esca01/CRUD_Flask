@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Dato</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            width: 50%;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            width: 100%;
+            height: 100px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Editar Dato</h1>
+
+    <div class="form-container">
+        <form action="/update_document/{{ document['_id'] }}" method="post">
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" value="{{ document['name'] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="listing_url">URL del listado:</label>
+                <input type="text" id="listing_url" name="listing_url" value="{{ document['listing_url'] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="summary">Resumen:</label>
+                <textarea id="summary" name="summary" required>{{ document['summary'] }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="property_type">Tipo de propiedad:</label>
+                <input type="text" id="property_type" name="property_type" value="{{ document['property_type'] }}" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
