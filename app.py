@@ -10,7 +10,7 @@ api = Api(app)
 # MongoDB setup
 mongo_uri = os.getenv('MONGO_URI', 'your-default-mongo-uri')
 client = MongoClient(mongo_uri)
-db = client['your-database-name']  # Replace with your database name
+db = client['']  # Replace with your database name
 collection = db['your-collection-name']  # Replace with your collection name
 
 # Define a resource for the Item
