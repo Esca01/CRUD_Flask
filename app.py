@@ -8,10 +8,10 @@ app = Flask(__name__)
 api = Api(app)
 
 # MongoDB setup
-mongo_uri = os.getenv('MONGO_URI', 'your-default-mongo-uri')
+mongo_uri = os.getenv('MONGO_URI', 'mongodb+srv://crudistribuidos:eSbSo25tgf15pT49@clusterd.fb0ybuu.mongodb.net/?retryWrites=true&w=majority&appName=ClusterD')
 client = MongoClient(mongo_uri)
-db = client['']  # Replace with your database name
-collection = db['your-collection-name']  # Replace with your collection name
+db = client['sample_restaurants']  # Replace with your database name
+collection = db['neighborhoods']  # Replace with your collection name
 
 # Define a resource for the Item
 class Item(Resource):
