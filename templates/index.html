@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB Data</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+        }
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .data-key {
+            font-weight: bold;
+            margin-right: 10px;
+            width: 120px; /* Ancho fijo para los nombres de los campos */
+        }
+        .data-value {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data from MongoDB</h1>
+    <ul id="data-list">
+        <!-- Aquí se insertarán los datos obtenidos de MongoDB -->
+        {% for document in data %}
+            <li>
+                <div class="data-row">
+                    <div class="data-key">_id:</div>
+                    <div class="data-value">{{ document['_id'] }}</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-key">Listing URL:</div>
+                    <div class="data-value"><a href="{{ document['listing_url'] }}" target="_blank">{{ document['listing_url'] }}</a></div>
+                </div>
+                <div class="data-row">
+                    <div class="data-key">Name:</div>
+                    <div class="data-value">{{ document['name'] }}</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-key">Summary:</div>
+                    <div class="data-value">{{ document['summary'] }}</div>
+                </div>
+                <div class="data-row">
+                    <div class="data-key">Property Type:</div>
+                    <div class="data-value">{{ document['property_type'] }}</div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
