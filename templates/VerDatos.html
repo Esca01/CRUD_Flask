@@ -36,6 +36,26 @@
 
       <h1 class="text-2xl mb-5">Ver Datos</h1>
 
+      <!-- Formulario de búsqueda -->
+      <div class="mb-5 flex items-center">
+        <label for="search_name" class="text-gray-700"
+          >Buscar por nombre:</label
+        >
+        <input
+          type="text"
+          id="search_name"
+          name="search_name"
+          placeholder="Ingrese el nombre"
+          class="border rounded p-2 ml-2"
+        />
+        <button
+          onclick="searchData()"
+          class="border rounded p-2 ml-2 bg-blue-500 text-white hover:bg-blue-600"
+        >
+          Buscar
+        </button>
+      </div>
+
       <ul id="data-list">
         <!-- Aquí se insertarán los datos obtenidos de MongoDB -->
         {% for document in data %}
@@ -109,6 +129,12 @@
     <script>
       function goBack() {
         window.history.back();
+      }
+
+      function searchData() {
+        var searchTerm = document.getElementById("search_name").value;
+        // Aquí puedes agregar la lógica para buscar los datos con el término searchTerm
+        // Por ejemplo, puedes hacer una petición AJAX al servidor para obtener los datos filtrados
       }
     </script>
   </body>
