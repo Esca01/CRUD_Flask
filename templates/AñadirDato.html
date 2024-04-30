@@ -4,68 +4,78 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Listing</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f7fafc;
-        margin: 0;
-        padding: 0;
-      }
-      .container {
-        max-width: 600px;
-        margin: 20px auto;
-        padding: 20px;
-        background-color: #ffffff;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-      h1 {
-        margin-bottom: 20px;
-      }
-      label {
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
-      input[type="text"],
-      input[type="submit"],
-      textarea {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-      }
-      textarea {
-        resize: vertical;
-        min-height: 100px;
-      }
-      input[type="submit"] {
-        background-color: #4299e1;
-        color: #ffffff;
-        border: none;
-        cursor: pointer;
-      }
-      input[type="submit"]:hover {
-        background-color: #3182ce;
-      }
-    </style>
+    <!-- Enlace al CDN de Tailwind CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <div class="container">
-      <h1>Agregar nuevo elemento</h1>
+  <body class="bg-gray-100">
+    <div
+      class="container max-w-md mx-auto px-4 py-8 bg-white rounded shadow-md"
+    >
+      <button
+        onclick="goBack()"
+        class="border rounded p-2 bg-gray-500 text-white hover:bg-gray-600 mr-4"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 inline-block align-middle mr-2"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+        Regresar
+      </button>
+
+      <h1 class="text-2xl mb-8">Agregar nuevo elemento</h1>
       <form action="/add_listing" method="POST">
-        <label for="name">Nombre:</label><br />
-        <input type="text" id="name" name="name" /><br />
+        <label for="name" class="font-bold mb-1">Nombre:</label><br />
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="border rounded p-2 w-full mb-4"
+        /><br />
 
-        <label for="description">Descripcion:</label><br />
-        <textarea id="description" name="description"></textarea><br />
+        <label for="description" class="font-bold mb-1">Descripción:</label
+        ><br />
+        <textarea
+          id="description"
+          name="description"
+          class="border rounded p-2 w-full mb-4"
+          rows="4"
+        ></textarea
+        ><br />
 
-        <label for="property_type">Tipo de propiedad:</label><br />
-        <input type="text" id="property_type" name="property_type" /><br />
+        <label for="property_type" class="font-bold mb-1"
+          >Tipo de propiedad:</label
+        ><br />
+        <input
+          type="text"
+          id="property_type"
+          name="property_type"
+          class="border rounded p-2 w-full mb-4"
+        /><br />
 
-        <input type="submit" value="Enviar" />
+        <input
+          type="submit"
+          value="Enviar"
+          class="border rounded p-2 bg-blue-500 text-white hover:bg-blue-600 cursor-pointer"
+        />
       </form>
     </div>
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+    </script>
   </body>
 </html>

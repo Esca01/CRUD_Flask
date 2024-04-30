@@ -1,2 +1,4 @@
-Flask==2.0.2
-pymongo==4.0.1
+flask
+python-dotenv
+pymongo[srv]
+gunicorn

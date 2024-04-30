@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request, redirect
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
+import os
 
 app = Flask(__name__)
 
-# MongoDB setup
-uri = "mongodb+srv://crudistribuidos:eSbSo25tgf15pT49@clusterd.fb0ybuu.mongodb.net/?retryWrites=true&w=majority&appName=ClusterD"
-client = MongoClient(uri, server_api=ServerApi('1'))
+# MongoDB setup 
+client = MongoClient(os.getenv("MONGODB_URI"), server_api=ServerApi('1'))
 db = client['sample_airbnb']
 collection = db['listingsAndReviews']
 

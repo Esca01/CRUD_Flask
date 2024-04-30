@@ -4,91 +4,62 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ver Datos</title>
-    <style>
-      /* Estilos CSS */
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f7fafc;
-      }
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-      }
-      .border {
-        border-width: 1px;
-        border-color: #e2e8f0;
-      }
-      .rounded {
-        border-radius: 0.25rem;
-      }
-      .bg-white {
-        background-color: #ffffff;
-      }
-      .p-10 {
-        padding: 1.25rem;
-      }
-      .mb-5 {
-        margin-bottom: 1.25rem;
-      }
-      .flex {
-        display: flex;
-        align-items: center;
-      }
-      .justify-between {
-        justify-content: space-between;
-      }
-      .text-blue-500 {
-        color: #4299e1;
-      }
-      .text-gray-700 {
-        color: #4a5568;
-      }
-      .hover\:bg-blue-500:hover {
-        background-color: #4299e1;
-      }
-      .hover\:text-white:hover {
-        color: #ffffff;
-      }
-      /* Nuevos estilos */
-      .info-box {
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-      }
-    </style>
+    <!-- Enlace al CDN de Tailwind CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <div class="container">
+  <body class="bg-gray-100">
+    <div class="container max-w-3xl mx-auto px-4 py-8">
+      <!-- Botón para regresar a la página anterior -->
+      <button
+        onclick="goBack()"
+        class="border rounded p-2 bg-gray-500 text-white hover:bg-gray-600 mr-4"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 inline-block align-middle mr-2"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+        Regresar
+      </button>
+
       <h1 class="text-2xl mb-5">Ver Datos</h1>
 
       <!-- Formulario de búsqueda -->
-      <div class="mb-5">
-        <form action="/VerDatos" method="GET">
-          <label for="search_name" class="text-gray-700"
-            >Buscar por nombre:</label
-          >
-          <input
-            type="text"
-            id="search_name"
-            name="search_name"
-            placeholder="Ingrese el nombre"
-            class="border rounded p-2 ml-2"
-          />
-          <button
-            type="submit"
-            class="border rounded p-2 ml-2 bg-blue-500 text-white hover:bg-blue-600"
-          >
-            Buscar
-          </button>
-        </form>
+      <div class="mb-5 flex items-center">
+        <label for="search_name" class="text-gray-700"
+          >Buscar por nombre:</label
+        >
+        <input
+          type="text"
+          id="search_name"
+          name="search_name"
+          placeholder="Ingrese el nombre"
+          class="border rounded p-2 ml-2"
+        />
+        <button
+          type="submit"
+          class="border rounded p-2 ml-2 bg-blue-500 text-white hover:bg-blue-600"
+        >
+          Buscar
+        </button>
       </div>
 
       <ul id="data-list">
         <!-- Aquí se insertarán los datos obtenidos de MongoDB -->
         {% for document in data %}
-        <li class="info-box border rounded p-10 mb-5">
+        <li class="info-box border rounded p-10 mb-5 bg-white">
           <div class="flex justify-between mb-5">
             <div class="text-gray-700">_id:</div>
             <div>{{ document['_id'] }}</div>
@@ -109,7 +80,7 @@
             <div>{{ document['name'] }}</div>
           </div>
           <div class="flex justify-between mb-5">
-            <div class="text-gray-700">Descripcion:</div>
+            <div class="text-gray-700">Descripción:</div>
             <div>{{ document['summary'] }}</div>
           </div>
           <div class="flex justify-between mb-5">
@@ -156,9 +127,8 @@
 
     <!-- Script para manejar la lógica de eliminar -->
     <script>
-      function remove(id) {
-        // Lógica para eliminar el elemento con el ID especificado
-        alert("Eliminar elemento con ID: " + id);
+      function goBack() {
+        window.history.back();
       }
     </script>
   </body>
