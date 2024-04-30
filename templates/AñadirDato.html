@@ -1,23 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Listing</title>
-</head>
-<body>
-    <h1>Add New Listing</h1>
-    <form action="/add_listing" method="POST">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name"><br>
-        
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description"></textarea><br>
-        
-        <label for="property_type">Property Type:</label><br>
-        <input type="text" id="property_type" name="property_type"><br>
-        
-        <input type="submit" value="Submit">
-    </form>
-</body>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7fafc;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        margin-bottom: 20px;
+      }
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      input[type="text"],
+      input[type="submit"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+      input[type="submit"] {
+        background-color: #4299e1;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #3182ce;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Agregar nuevo elemento</h1>
+      <form action="/add_listing" method="POST">
+        <label for="name">Nombre:</label><br />
+        <input type="text" id="name" name="name" /><br />
+
+        <label for="description">Descripcion:</label><br />
+        <textarea id="description" name="description"></textarea><br />
+
+        <label for="property_type">Tipo de propiedad:</label><br />
+        <input type="text" id="property_type" name="property_type" /><br />
+
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+  </body>
 </html>

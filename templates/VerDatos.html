@@ -1,133 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ver Datos</title>
     <style>
-        /* Estilos CSS */
-        body {
-            font-family: Arial, sans-serif;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            padding: 10px;
-            margin-bottom: 5px;
-            border: 1px solid #ccc;
-            position: relative; /* Para que los botones estén posicionados correctamente */
-        }
-        .data-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        .data-key {
-            font-weight: bold;
-            margin-right: 10px;
-            width: 120px; /* Ancho fijo para los nombres de los campos */
-        }
-        .data-value {
-            flex: 1;
-        }
-        .delete-button {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-        }
-        .pagination {
-            margin-top: 20px;
-        }
-        .search-form {
-            margin-bottom: 20px;
-        }
+      /* Estilos CSS */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7fafc;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .border {
+        border-width: 1px;
+        border-color: #e2e8f0;
+      }
+      .rounded {
+        border-radius: 0.25rem;
+      }
+      .bg-white {
+        background-color: #ffffff;
+      }
+      .p-10 {
+        padding: 1.25rem;
+      }
+      .mb-5 {
+        margin-bottom: 1.25rem;
+      }
+      .flex {
+        display: flex;
+        align-items: center;
+      }
+      .justify-between {
+        justify-content: space-between;
+      }
+      .text-blue-500 {
+        color: #4299e1;
+      }
+      .text-gray-700 {
+        color: #4a5568;
+      }
+      .hover\:bg-blue-500:hover {
+        background-color: #4299e1;
+      }
+      .hover\:text-white:hover {
+        color: #ffffff;
+      }
+      /* Nuevos estilos */
+      .info-box {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
     </style>
-</head>
-<body>
-    <h1>Ver Datos</h1>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-2xl mb-5">Ver Datos</h1>
 
-    <!-- Formulario de búsqueda arriba -->
-    <div class="search-form">
+      <!-- Formulario de búsqueda -->
+      <div class="mb-5">
         <form action="/VerDatos" method="GET">
-            <label for="search_name">Buscar por nombre:</label>
-            <input type="text" id="search_name" name="search_name" placeholder="Ingrese el nombre">
-            <button type="submit">Buscar</button>
+          <label for="search_name" class="text-gray-700"
+            >Buscar por nombre:</label
+          >
+          <input
+            type="text"
+            id="search_name"
+            name="search_name"
+            placeholder="Ingrese el nombre"
+            class="border rounded p-2 ml-2"
+          />
+          <button
+            type="submit"
+            class="border rounded p-2 ml-2 bg-blue-500 text-white hover:bg-blue-600"
+          >
+            Buscar
+          </button>
         </form>
-    </div>
+      </div>
 
-    <!-- Barra de navegación para paginación -->
-    <div class="pagination">
-        {% if current_page > 1 %}
-            <a href="/VerDatos?page={{ current_page - 1 }}">Anterior</a>
-        {% endif %}
-        
-        {% if current_page < total_pages %}
-            <a href="/VerDatos?page={{ current_page + 1 }}">Siguiente</a>
-        {% endif %}
-    </div>
-
-    <ul id="data-list">
+      <ul id="data-list">
         <!-- Aquí se insertarán los datos obtenidos de MongoDB -->
         {% for document in data %}
-            <li>
-                <div class="data-row">
-                    <div class="data-key">_id:</div>
-                    <div class="data-value">{{ document['_id'] }}</div>
-                </div>
-                <div class="data-row">
-                    <div class="data-key">Listing URL:</div>
-                    <div class="data-value"><a href="{{ document['listing_url'] }}" target="_blank">{{ document['listing_url'] }}</a></div>
-                </div>
-                <div class="data-row">
-                    <div class="data-key">Name:</div>
-                    <div class="data-value">{{ document['name'] }}</div>
-                </div>
-                <div class="data-row">
-                    <div class="data-key">Summary:</div>
-                    <div class="data-value">{{ document['summary'] }}</div>
-                </div>
-                <div class="data-row">
-                    <div class="data-key">Property Type:</div>
-                    <div class="data-value">{{ document['property_type'] }}</div>
-                </div>
-                <!-- Botón de eliminar -->
-                <form action="/delete_document/{{ document['_id'] }}" method="post">
-                    <button type="submit">Eliminar</button>
-                </form>
-                <!-- Botón de editar -->
-                <a href="/editar_dato/{{ document['_id'] }}">Editar</a>
-            </li>
+        <li class="info-box border rounded p-10 mb-5">
+          <div class="flex justify-between mb-5">
+            <div class="text-gray-700">_id:</div>
+            <div>{{ document['_id'] }}</div>
+          </div>
+          <div class="flex justify-between mb-5">
+            <div class="text-gray-700">Listing URL:</div>
+            <div>
+              <a
+                href="{{ document['listing_url'] }}"
+                target="_blank"
+                class="text-blue-500"
+                >{{ document['listing_url'] }}</a
+              >
+            </div>
+          </div>
+          <div class="flex justify-between mb-5">
+            <div class="text-gray-700">Nombre:</div>
+            <div>{{ document['name'] }}</div>
+          </div>
+          <div class="flex justify-between mb-5">
+            <div class="text-gray-700">Descripcion:</div>
+            <div>{{ document['summary'] }}</div>
+          </div>
+          <div class="flex justify-between mb-5">
+            <div class="text-gray-700">Tipo de propiedad:</div>
+            <div>{{ document['property_type'] }}</div>
+          </div>
+          <!-- Botones de eliminar y editar -->
+          <div class="flex justify-between">
+            <form action="/delete_document/{{ document['_id'] }}" method="post">
+              <button
+                type="submit"
+                class="border rounded p-2 bg-red-500 text-white hover:bg-red-600"
+              >
+                Eliminar
+              </button>
+            </form>
+            <a
+              href="/editar_dato/{{ document['_id'] }}"
+              class="text-blue-500 hover:text-blue-600"
+              >Editar</a
+            >
+          </div>
+        </li>
         {% endfor %}
-    </ul>
+      </ul>
 
-    <!-- Barra de navegación para paginación -->
-    <div class="pagination">
+      <!-- Barra de navegación para paginación -->
+      <div class="flex justify-between">
         {% if current_page > 1 %}
-            <a href="/VerDatos?page={{ current_page - 1 }}">Anterior</a>
+        <a
+          href="/VerDatos?page={{ current_page - 1 }}"
+          class="text-blue-500 hover:text-blue-600"
+          >Anterior</a
+        >
+        {% endif %} {% if current_page < total_pages %}
+        <a
+          href="/VerDatos?page={{ current_page + 1 }}"
+          class="text-blue-500 hover:text-blue-600"
+          >Siguiente</a
+        >
         {% endif %}
-        
-        {% if current_page < total_pages %}
-            <a href="/VerDatos?page={{ current_page + 1 }}">Siguiente</a>
-        {% endif %}
-    </div>
-
-    <!-- Formulario de búsqueda abajo -->
-    <div class="search-form">
-        <form action="/VerDatos" method="GET">
-            <label for="search_name">Buscar por nombre:</label>
-            <input type="text" id="search_name" name="search_name" placeholder="Ingrese el nombre">
-            <button type="submit">Buscar</button>
-        </form>
+      </div>
     </div>
 
     <!-- Script para manejar la lógica de eliminar -->
     <script>
-        function remove(id) {
-            // Lógica para eliminar el elemento con el ID especificado
-            alert("Eliminar elemento con ID: " + id);
-        }
+      function remove(id) {
+        // Lógica para eliminar el elemento con el ID especificado
+        alert("Eliminar elemento con ID: " + id);
+      }
     </script>
-</body>
+  </body>
 </html>

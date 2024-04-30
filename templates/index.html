@@ -1,46 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MongoDB Data</title>
     <style>
-        /* Estilos CSS */
-        body {
-            font-family: Arial, sans-serif;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            padding: 10px;
-            margin-bottom: 5px;
-            border: 1px solid #ccc;
-        }
-        .data-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        .data-key {
-            font-weight: bold;
-            margin-right: 10px;
-            width: 120px; /* Ancho fijo para los nombres de los campos */
-        }
-        .data-value {
-            flex: 1;
-        }
-        .button {
-            margin-right: 10px;
-        }
+      /* Estilos CSS */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f7fafc;
+      }
+      h1 {
+        margin-bottom: 20px;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+      }
+      li {
+        padding: 10px;
+        margin-bottom: 5px;
+        border: 1px solid #e2e8f0;
+        background-color: #ffffff;
+      }
+      .data-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .data-key {
+        font-weight: bold;
+        margin-right: 10px;
+        width: 120px; /* Ancho fijo para los nombres de los campos */
+      }
+      .data-value {
+        flex: 1;
+      }
+      .buttons {
+        margin-top: 20px;
+        display: flex;
+      }
+      .button {
+        padding: 10px 20px;
+        margin-right: 10px;
+        background-color: #4299e1;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+      .button:hover {
+        background-color: #3182ce;
+      }
     </style>
-</head>
-<body>
-    <h1>Data from MongoDB</h1>
+  </head>
+  <body>
+    <h1>Datos del MongoDB</h1>
     <!-- Botones -->
     <div class="buttons">
-        <a href="/AñadirDato" class="button">Añadir Dato</a>
-        <a href="/VerDatos" class="button">Ver Base de Datos</a>
-</body>
+      <a href="/AñadirDato" class="button">Añadir Dato</a>
+      <a href="/VerDatos" class="button">Ver Base de Datos</a>
+    </div>
+  </body>
 </html>
