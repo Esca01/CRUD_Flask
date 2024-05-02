@@ -73,13 +73,13 @@ def crear_app():
     def add_listing():
         if request.method == 'POST':
             name = request.form['name']
-            description = request.form['description']
+            summary = request.form['summary']
             property_type = request.form['property_type']
             
             # Guardar los datos en la base de datos
             new_listing = {
                 "name": name,
-                "description": description,
+                "summary": summary,
                 "property_type": property_type
             }
             collection.insert_one(new_listing)
@@ -113,7 +113,7 @@ def crear_app():
         # Actualizar el documento en la base de datos
         collection.update_one(
             {"_id": document_id},
-            {"$set": {"name": name, "description": summary, "property_type": property_type}}
+            {"$set": {"name": name, "summary": summary, "property_type": property_type}}
         )
 
         return redirect('/VerDatos')  # Redirigir a la página de ver datos después de la actualización
