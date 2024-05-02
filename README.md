@@ -37,6 +37,9 @@ The app uses the following templates:
 
 * `index.html`: the index template that displays a form to add a new listing
 * `VerDatos.html`: the VerDatos template that displays the data from the database
+* `AñadirDato.html`: the AñadirDato template that displays a menu that allow us to add data.
+* `EditarDato.html`: the EditarDato template that displays a menu that allow us to edit data.
+  
 
 ## Database
 
